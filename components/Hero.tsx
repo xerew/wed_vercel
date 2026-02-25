@@ -15,7 +15,7 @@ export default function Hero() {
     >
       {/* Background photo — replace src with your couple photo */}
       <img
-        src="/hero-photo.jpg"
+        src="/rsvp-photo.jpg"
         alt=""
         style={{
           position: 'absolute',
