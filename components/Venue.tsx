@@ -17,7 +17,7 @@ const venues = [
 
 export default function Venue() {
   return (
-    <section id="venue" style={{ background: '#9e7878', padding: '80px 24px' }}>
+    <section id="venue" style={{ background: '#9e7878', minHeight: '85vh', display: 'flex', alignItems: 'center', padding: '60px 24px' }}>
       <div style={{ maxWidth: '860px', margin: '0 auto' }}>
         <h2
           style={{

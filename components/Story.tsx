@@ -1,6 +1,6 @@
 export default function Story() {
   return (
-    <section id="story" style={{ background: '#c9aaaa', padding: '80px 24px' }}>
+    <section id="story" style={{ background: '#c9aaaa', minHeight: '85vh', display: 'flex', alignItems: 'center', padding: '60px 24px' }}>
       <div
         style={{
           maxWidth: '960px',

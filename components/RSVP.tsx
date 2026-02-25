@@ -16,7 +16,7 @@ export default function RSVP() {
       style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
-        minHeight: '600px',
+        minHeight: '85vh',
       }}
     >
       {/* Left — couple photo */}

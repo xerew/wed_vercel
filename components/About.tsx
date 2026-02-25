@@ -6,7 +6,7 @@ const items = [
 
 export default function About() {
   return (
-    <section id="about" style={{ background: '#fff', padding: '80px 24px' }}>
+    <section id="about" style={{ background: '#fff', minHeight: '85vh', display: 'flex', alignItems: 'center', padding: '60px 24px' }}>
       <div style={{ maxWidth: '960px', margin: '0 auto' }}>
         <h2
           style={{

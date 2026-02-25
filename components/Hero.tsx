@@ -5,7 +5,7 @@ export default function Hero() {
       style={{
         position: 'relative',
         width: '100%',
-        minHeight: '100vh',
+        minHeight: '85vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -13,9 +13,8 @@ export default function Hero() {
         background: '#3a2e2e',
       }}
     >
-      {/* Background photo — replace src with your couple photo */}
       <img
-        src="/rsvp-photo.jpg"
+        src="/section_1.jpg"
         alt=""
         style={{
           position: 'absolute',
@@ -28,16 +27,8 @@ export default function Hero() {
         onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
       />
 
-      {/* Dark overlay */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'rgba(40, 20, 20, 0.52)',
-        }}
-      />
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(40, 20, 20, 0.45)' }} />
 
-      {/* Content */}
       <div
         style={{
           position: 'relative',
@@ -49,40 +40,39 @@ export default function Hero() {
       >
         <p
           style={{
-            fontFamily: 'var(--font-script)',
-            fontSize: 'clamp(16px, 2.5vw, 22px)',
+            fontFamily: "'Sloop Script Pro', 'Cormorant Garamond', cursive",
+            fontSize: 'clamp(22px, 3vw, 36px)',
             fontStyle: 'italic',
-            marginBottom: '24px',
-            opacity: 0.92,
+            marginBottom: '20px',
+            opacity: 0.95,
             letterSpacing: '0.02em',
           }}
         >
-          Όλα ξεκίνησαν από ένα ΝΑΙ και κάπως έτσι... έγινε για πάντα.
+          Όλα ξεκίνησαν από ένα Ν-ΑΙ και κάπως έτσι... έγινε για πάντα..
         </p>
 
         <h1
           style={{
-            fontFamily: 'var(--font-script)',
-            fontSize: 'clamp(56px, 9vw, 110px)',
+            fontFamily: "'Sloop Script Pro', 'Cormorant Garamond', cursive",
+            fontSize: 'clamp(72px, 11vw, 150px)',
             fontWeight: 400,
-            lineHeight: 1.1,
-            marginBottom: '20px',
+            lineHeight: 1.05,
+            marginBottom: '24px',
             letterSpacing: '0.01em',
           }}
         >
-          Νίκος &amp; Αμελία
+          Νάκης &amp; Αιμιλία
         </h1>
 
         <p
           style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(14px, 1.8vw, 18px)',
-            letterSpacing: '0.25em',
-            textTransform: 'uppercase',
-            opacity: 0.85,
+            fontFamily: "'TT Hoves', 'Geist', sans-serif",
+            fontSize: 'clamp(13px, 1.5vw, 16px)',
+            letterSpacing: '0.2em',
+            opacity: 0.8,
           }}
         >
-          Ν-ΑΙ
+          N-AI
         </p>
       </div>
     </section>

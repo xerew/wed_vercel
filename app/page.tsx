@@ -18,7 +18,7 @@ export default function Home() {
     <>
       {!opened && (
         <EnvelopeIntro
-          coupleName="Νίκος & Αμελία"
+          coupleName="Νάκης & Αιμιλία"
           onFinish={() => setOpened(true)}
           videoSrc="/envelope-video.mp4"
         />
