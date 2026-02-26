@@ -2,134 +2,342 @@
 
 import { useState } from 'react';
 
-export default function RSVP() {
-  const [submitted, setSubmitted] = useState(false);
+// ── After deploying your Google Apps Script, paste the URL here ──
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzU4OJKLEjKQkAhKkSN6HEOK7g6Warhs6cdPT6-adOuM4FBLZpWujs7f3oym_u9HkD1/exec';
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+export default function RSVP() {
+  const [attending, setAttending] = useState<'yes' | 'no' | ''>('');
+  const [guestCount, setGuestCount] = useState<0 | 1 | 2>(0);
+  const [childrenCount, setChildrenCount] = useState<0 | 1 | 2>(0);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: { preventDefault(): void; currentTarget: HTMLFormElement }) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setError('');
+
+    const form = e.currentTarget;
+    const getValue = (name: string) =>
+      (form.elements.namedItem(name) as HTMLInputElement | null)?.value || '';
+
+    const guestNames = [
+      getValue('guest1'),
+      getValue('guest2'),
+    ].filter(Boolean).join(', ');
+
+    const data = {
+      timestamp: new Date().toISOString(),
+      fullName: getValue('fullName'),
+      email: getValue('email'),
+      phone: getValue('phone'),
+      attending,
+      guests: guestCount,
+      guestNames,
+      children: childrenCount > 0 ? childrenCount : 'No',
+      dietary: getValue('dietary'),
+      songRequest: getValue('songRequest'),
+      message: getValue('message'),
+    };
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      setSubmitted(true);
+    } catch {
+      setError('Κάτι πήγε στραβά. Προσπαθήστε ξανά.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const inputStyle: React.CSSProperties = {
+    width: '100%',
+    background: 'transparent',
+    border: 'none',
+    borderBottom: '1px solid #c9aaaa',
+    padding: '10px 0',
+    fontSize: 'clamp(14px, 1.4vw, 17px)',
+    fontFamily: "'TT Hoves', var(--font-sans)",
+    color: '#2d1414',
+    outline: 'none',
+  };
+
+  const labelStyle: React.CSSProperties = {
+    display: 'block',
+    fontSize: '11px',
+    letterSpacing: '0.12em',
+    textTransform: 'uppercase',
+    color: '#9e7878',
+    marginBottom: '4px',
+    fontFamily: "'TT Hoves', var(--font-sans)",
   };
 
   return (
     <section
       id="rsvp"
       style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
+        background: '#f5ede0',
         minHeight: '85vh',
+        display: 'flex',
+        alignItems: 'center',
+        padding: '60px 40px',
       }}
     >
-      {/* Left — couple photo */}
       <div
         style={{
-          background: '#7a6060',
-          overflow: 'hidden',
-          position: 'relative',
-        }}
-      >
-        <img
-          src="/rsvp-photo.jpg"
-          alt=""
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            display: 'block',
-          }}
-          onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-        />
-      </div>
-
-      {/* Right — RSVP content */}
-      <div
-        style={{
-          background: '#f5ede0',
-          display: 'flex',
-          flexDirection: 'column',
+          maxWidth: '1300px',
+          margin: '0 auto',
+          width: '100%',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '100px',
           alignItems: 'center',
-          justifyContent: 'center',
-          padding: '60px 40px',
-          textAlign: 'center',
         }}
       >
-        {submitted ? (
-          <div>
-            <h2
+        {/* Left — couple photo with offset outline */}
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div
+            style={{
+              position: 'relative',
+              width: '85%',
+              paddingRight: '20px',
+              paddingBottom: '20px',
+            }}
+          >
+            <img
+              src="/couple_section_5.png"
+              alt="Νάκης & Αιμιλία"
               style={{
-                fontFamily: 'var(--font-serif)',
-                fontSize: '22px',
-                fontWeight: 300,
-                color: '#2d1f1f',
-                letterSpacing: '0.05em',
+                width: '100%',
+                height: 'auto',
+                display: 'block',
+                position: 'relative',
+                zIndex: 1,
+                borderRadius: '20px',
               }}
-            >
-              Ευχαριστούμε!
-            </h2>
-            <p style={{ color: '#9e7878', marginTop: '12px', fontSize: '14px' }}>
-              Λάβαμε την απάντησή σας.
-            </p>
+              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                top: '20px',
+                left: '20px',
+                right: 0,
+                bottom: 0,
+                border: '5px solid #2d1414',
+                zIndex: 0,
+                borderRadius: '20px',
+              }}
+            />
           </div>
-        ) : (
-          <>
-            <p
-              style={{
-                fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(18px, 2vw, 24px)',
-                fontWeight: 700,
-                color: '#2d1f1f',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                lineHeight: 1.4,
-                marginBottom: '32px',
-              }}
-            >
-              Please RSVP by<br />August 15, 2026
-            </p>
+        </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '32px', width: '100%', maxWidth: '280px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '14px', color: '#3d2020' }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9e7878" strokeWidth="2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3-8.57A2 2 0 0 1 3.68 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.62a16 16 0 0 0 5.47 5.47l1.08-1.08a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.78 16z" />
-                </svg>
-                6979898176
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '14px', color: '#3d2020' }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9e7878" strokeWidth="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                  <polyline points="22,6 12,13 2,6" />
-                </svg>
-                hello@mreallygreatsite.com
-              </div>
-            </div>
-
-            <form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: '280px' }}>
-              <button
-                type="submit"
+        {/* Right — RSVP form */}
+        <div>
+          {submitted ? (
+            <div style={{ textAlign: 'center' }}>
+              <h2
                 style={{
-                  width: '100%',
-                  padding: '14px 24px',
-                  background: '#2d1f1f',
-                  color: '#fff',
+                  fontFamily: "'Amiable Song', var(--font-serif)",
+                  fontSize: 'clamp(40px, 5vw, 64px)',
+                  fontWeight: 400,
+                  color: '#2d1414',
+                  marginBottom: '16px',
+                }}
+              >
+                Ευχαριστούμε!
+              </h2>
+              <p style={{ fontFamily: "'TT Hoves', var(--font-sans)", color: '#9e7878', fontSize: '17px' }}>
+                Λάβαμε την απάντησή σας. Ανυπομονούμε να σας δούμε!
+              </p>
+            </div>
+          ) : (
+            <>
+              <h2
+                style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '13px',
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  border: 'none',
-                  cursor: 'pointer',
-                  borderRadius: '2px',
+                  fontSize: 'clamp(36px, 5vw, 60px)',
+                  fontWeight: 300,
+                  color: '#2d1414',
+                  marginBottom: '8px',
+                  letterSpacing: '-0.5px',
                 }}
               >
                 RSVP
-              </button>
-            </form>
-          </>
-        )}
+              </h2>
+              <p
+                style={{
+                  fontFamily: "'TT Hoves', var(--font-sans)",
+                  fontSize: 'clamp(13px, 1.3vw, 16px)',
+                  color: '#9e7878',
+                  letterSpacing: '0.06em',
+                  marginBottom: '44px',
+                }}
+              >
+                Παρακαλούμε απαντήστε έως 15 Αυγούστου 2026
+              </p>
+
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+
+                {/* Full Name */}
+                <div>
+                  <label style={labelStyle}>Ονοματεπώνυμο</label>
+                  <input name="fullName" required style={inputStyle} placeholder="Το όνομά σας" />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label style={labelStyle}>Email</label>
+                  <input name="email" type="email" required style={inputStyle} placeholder="email@example.com" />
+                </div>
+
+                {/* Phone (optional) */}
+                <div>
+                  <label style={labelStyle}>Τηλέφωνο (προαιρετικό)</label>
+                  <input name="phone" type="tel" style={inputStyle} placeholder="+30 6900 000000" />
+                </div>
+
+                {/* Will you attend */}
+                <div>
+                  <label style={labelStyle}>Θα παραστείτε;</label>
+                  <select
+                    name="attending"
+                    required
+                    value={attending}
+                    onChange={(e) => {
+                      setAttending(e.target.value as 'yes' | 'no');
+                      setGuestCount(0);
+                      setChildrenCount(0);
+                    }}
+                    style={{ ...inputStyle, cursor: 'pointer' }}
+                  >
+                    <option value="">Επιλέξτε...</option>
+                    <option value="yes">Ναι, θα παραστώ</option>
+                    <option value="no">Δυστυχώς δεν μπορώ</option>
+                  </select>
+                </div>
+
+                {/* ── Conditional: only if attending YES ── */}
+                {attending === 'yes' && (
+                  <>
+                    {/* Number of Guests */}
+                    <div>
+                      <label style={labelStyle}>Αριθμός συνοδών</label>
+                      <select
+                        name="guests"
+                        value={guestCount}
+                        onChange={(e) => {
+                          setGuestCount(Number(e.target.value) as 0 | 1 | 2);
+                        }}
+                        style={{ ...inputStyle, cursor: 'pointer' }}
+                      >
+                        <option value={0}>0 — Έρχομαι μόνος/η</option>
+                        <option value={1}>1 συνοδός</option>
+                        <option value={2}>2 συνοδοί</option>
+                      </select>
+                    </div>
+
+                    {/* Names of Additional Guests — dynamic */}
+                    {guestCount >= 1 && (
+                      <div>
+                        <label style={labelStyle}>Όνομα 1ου συνοδού</label>
+                        <input name="guest1" style={inputStyle} placeholder="Ονοματεπώνυμο" />
+                      </div>
+                    )}
+                    {guestCount >= 2 && (
+                      <div>
+                        <label style={labelStyle}>Όνομα 2ου συνοδού</label>
+                        <input name="guest2" style={inputStyle} placeholder="Ονοματεπώνυμο" />
+                      </div>
+                    )}
+
+                    {/* Children */}
+                    <div>
+                      <label style={labelStyle}>Θα έχετε μαζί παιδιά; Αν ναι, πόσα;</label>
+                      <select
+                        name="children"
+                        value={childrenCount}
+                        onChange={(e) => setChildrenCount(Number(e.target.value) as 0 | 1 | 2)}
+                        style={{ ...inputStyle, cursor: 'pointer' }}
+                      >
+                        <option value={0}>Όχι</option>
+                        <option value={1}>1 παιδί</option>
+                        <option value={2}>2 παιδιά</option>
+                      </select>
+                    </div>
+                  </>
+                )}
+
+                {/* Dietary */}
+                <div>
+                  <label style={labelStyle}>Αλλεργίες / Διατροφικές προτιμήσεις (προαιρετικό)</label>
+                  <input
+                    name="dietary"
+                    style={inputStyle}
+                    placeholder="π.χ. χορτοφαγία, αλλεργία στους ξηρούς καρπούς..."
+                  />
+                </div>
+
+                {/* Song request */}
+                <div>
+                  <label style={labelStyle}>Αίτημα τραγουδιού για το πάρτι 🎶</label>
+                  <input name="songRequest" style={inputStyle} placeholder="π.χ. Dancing Queen - ABBA" />
+                </div>
+
+                {/* Message */}
+                <div>
+                  <label style={labelStyle}>Μήνυμα στο ζευγάρι (προαιρετικό)</label>
+                  <textarea
+                    name="message"
+                    rows={3}
+                    style={{ ...inputStyle, resize: 'none' }}
+                    placeholder="Γράψτε ένα μήνυμα..."
+                  />
+                </div>
+
+                {error && (
+                  <p style={{ color: '#c0392b', fontSize: '13px', fontFamily: "'TT Hoves', var(--font-sans)" }}>
+                    {error}
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  style={{
+                    marginTop: '8px',
+                    padding: '16px 0',
+                    background: '#2d1414',
+                    color: '#fff',
+                    fontFamily: 'var(--font-serif)',
+                    fontSize: 'clamp(13px, 1.3vw, 16px)',
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    border: 'none',
+                    cursor: submitting ? 'not-allowed' : 'pointer',
+                    opacity: submitting ? 0.6 : 1,
+                    borderRadius: '2px',
+                  }}
+                >
+                  {submitting ? 'Αποστολή...' : 'Αποστολή'}
+                </button>
+              </form>
+            </>
+          )}
+        </div>
       </div>
 
       <style>{`
-        @media (max-width: 640px) {
-          #rsvp { grid-template-columns: 1fr !important; }
-          #rsvp > div:first-child { min-height: 280px; }
+        #rsvp input::placeholder, #rsvp textarea::placeholder { color: #c9aaaa; }
+        #rsvp select option { background: #f5ede0; color: #2d1414; }
+        @media (max-width: 700px) {
+          #rsvp > div { grid-template-columns: 1fr !important; gap: 52px !important; }
         }
       `}</style>
     </section>

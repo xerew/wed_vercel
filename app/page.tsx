@@ -9,7 +9,6 @@ import Story from '@/components/Story';
 import Schedule from '@/components/Schedule';
 import Venue from '@/components/Venue';
 import RSVP from '@/components/RSVP';
-import Footer from '@/components/Footer';
 
 export default function Home() {
   const [opened, setOpened] = useState(false);
@@ -20,7 +19,7 @@ export default function Home() {
         <EnvelopeIntro
           coupleName="Νάκης & Αιμιλία"
           onFinish={() => setOpened(true)}
-          videoSrc="/envelope-video.mp4"
+          videoSrc="/wedding_19_09_opening.mp4"
         />
       )}
 
@@ -35,7 +34,6 @@ export default function Home() {
         <Schedule />
         <Venue />
         <RSVP />
-        <Footer />
       </motion.main>
     </>
   );

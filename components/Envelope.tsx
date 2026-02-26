@@ -64,7 +64,7 @@ export default function EnvelopeIntro({
               transform: 'translate(-50%, -50%) scale(1.15)',
               width: '100%',
               height: '100%',
-              objectFit: 'cover',
+              //objectFit: 'cover',
               display: 'block',
             }}
           >

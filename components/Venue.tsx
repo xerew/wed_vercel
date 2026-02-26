@@ -1,103 +1,128 @@
-const venues = [
+const contacts = [
   {
     name: 'Τελετή',
     address: '123 Οδός Γάμου\nΑθήνα 10000\nΕλλάδα',
-    phone: 'Τηλ: (123) 456-7890',
-    mobile: 'Κιν: (123) 456-7890',
-    email: 'info@venue-ceremony.gr',
+    mapSrc: 'https://maps.google.com/maps?q=37.758934,24.0781474&z=14&output=embed',
   },
   {
     name: 'Δεξίωση',
     address: '456 Οδός Δεξίωσης\nΑθήνα 10000\nΕλλάδα',
-    phone: 'Τηλ: (123) 456-7890',
-    mobile: 'Κιν: (123) 456-7890',
-    email: 'info@venue-reception.gr',
+    mapSrc: 'https://maps.google.com/maps?q=37.849247,23.938608&z=14&output=embed',
   },
 ];
 
 export default function Venue() {
   return (
-    <section id="venue" style={{ background: '#9e7878', minHeight: '85vh', display: 'flex', alignItems: 'center', padding: '60px 24px' }}>
-      <div style={{ maxWidth: '860px', margin: '0 auto' }}>
-        <h2
-          style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(28px, 4vw, 42px)',
-            fontWeight: 300,
-            color: '#fff',
-            marginBottom: '48px',
-            letterSpacing: '-0.5px',
-          }}
-        >
-          Contact Details
-        </h2>
+    <section id="venue" style={{ position: 'relative', background: '#9e7878', minHeight: '85vh', display: 'flex', alignItems: 'center', padding: '60px 40px', overflow: 'hidden' }}>
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 1,
+          maxWidth: '1400px',
+          margin: '0 auto',
+          width: '100%',
+          display: 'grid',
+          gridTemplateColumns: '1fr 2fr',
+          gap: '80px',
+          alignItems: 'start',
+        }}
+      >
+        {/* Left — big title + rings image absolute below */}
+        <div style={{ position: 'relative' }}>
+          <h2
+            style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'clamp(56px, 8vw, 100px)',
+              fontWeight: 300,
+              color: '#fff',
+              letterSpacing: '-0.5px',
+              lineHeight: 1.05,
+              marginBottom: '0',
+            }}
+          >
+            Contact<br />Details
+          </h2>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '32px',
-          }}
-        >
-          {venues.map((v) => (
-            <div
-              key={v.name}
-              style={{
-                background: 'rgba(255,255,255,0.12)',
-                border: '1px solid rgba(255,255,255,0.25)',
-                borderRadius: '4px',
-                padding: '32px 28px',
-              }}
-            >
-              {/* Rings icon */}
-              <svg
-                width="40"
-                height="28"
-                viewBox="0 0 40 28"
-                fill="none"
-                stroke="rgba(255,255,255,0.7)"
-                strokeWidth="1.5"
-                style={{ marginBottom: '16px' }}
-              >
-                <circle cx="14" cy="14" r="10" />
-                <circle cx="26" cy="14" r="10" />
-              </svg>
+          {/* Rings image — absolute, sits below title without pushing layout */}
+          <img
+            src="/rings_section_5.png"
+            alt=""
+            style={{
+              position: 'absolute',
+              top: '100%',
+              left: 0,
+              width: '260px',
+              height: 'auto',
+              marginTop: '32px',
+              pointerEvents: 'none',
+            }}
+          />
+        </div>
 
-              <h3
+        {/* Right — two contact entries */}
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          {contacts.map((c, i) => (
+            <div key={c.name}>
+              <div
                 style={{
-                  fontFamily: 'var(--font-script)',
-                  fontSize: '22px',
-                  color: '#fff',
-                  marginBottom: '12px',
-                  fontWeight: 400,
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: '40px',
+                  padding: '52px 0',
+                  alignItems: 'stretch',
                 }}
               >
-                {v.name}
-              </h3>
-              <p
-                style={{
-                  fontSize: '13px',
-                  color: 'rgba(255,255,255,0.85)',
-                  lineHeight: 1.8,
-                  whiteSpace: 'pre-line',
-                  marginBottom: '16px',
-                }}
-              >
-                {v.address}
-              </p>
-              <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.75)', lineHeight: 1.9 }}>
-                {v.phone}<br />
-                {v.mobile}<br />
-                {v.email}
-              </p>
+                {/* Name + address — height matches map */}
+                <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div
+                    style={{
+                      fontFamily: "'Sloop Script Pro', cursive",
+                      fontSize: 'clamp(40px, 4.5vw, 62px)',
+                      color: '#fff',
+                      marginBottom: '20px',
+                    }}
+                  >
+                    {c.name}
+                  </div>
+                  <p
+                    style={{
+                      fontFamily: "'TT Hoves', var(--font-sans)",
+                      fontSize: 'clamp(16px, 1.6vw, 22px)',
+                      color: 'rgba(255,255,255,0.85)',
+                      lineHeight: 1.9,
+                      whiteSpace: 'pre-line',
+                    }}
+                  >
+                    {c.address}
+                  </p>
+                </div>
+
+                {/* Map — bigger, rounder corners */}
+                <div style={{ borderRadius: '20px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.25)' }}>
+                  <iframe
+                    src={c.mapSrc}
+                    width="100%"
+                    height="320"
+                    style={{ display: 'block', border: 0 }}
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+              </div>
+
+              {/* Divider between entries */}
+              {i < contacts.length - 1 && (
+                <div style={{ borderBottom: '1px solid rgba(255,255,255,0.35)' }} />
+              )}
             </div>
           ))}
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 560px) {
-          #venue > div > div:last-child { grid-template-columns: 1fr !important; }
+        @media (max-width: 700px) {
+          #venue > div { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>
