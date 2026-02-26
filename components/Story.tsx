@@ -131,9 +131,20 @@ export default function Story() {
       </div>
 
       <style>{`
-        @media (max-width: 700px) {
-          #story > div:last-child { grid-template-columns: 1fr !important; gap: 52px !important; }
-          #story > img { width: 160px !important; }
+        @media (max-width: 768px) {
+          #story { padding: 48px 20px !important; }
+          #story > div { grid-template-columns: 1fr !important; gap: 40px !important; }
+          #story > img { width: 120px !important; }
+          /* Text aligns right on mobile, with top margin to clear the illustration */
+          #story > div > div:first-child { text-align: right !important; padding-top: 100px !important; }
+          /* Space between title and paragraph */
+          #story > div > div:first-child h2 { margin-bottom: 20px !important; }
+          /* Hide the offset outline on mobile */
+          #story > div > div:last-child > div > div { display: none !important; }
+          /* Remove the outline-offset padding from the wrapper */
+          #story > div > div:last-child > div { padding-right: 0 !important; padding-bottom: 0 !important; }
+          /* Photo aligns left on mobile */
+          #story > div > div:last-child { justify-content: flex-start !important; }
         }
       `}</style>
     </section>

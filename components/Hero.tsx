@@ -48,7 +48,7 @@ export default function Hero() {
             letterSpacing: '0.02em',
           }}
         >
-          Όλα ξεκίνησαν από ένα Ν-ΑΙ και κάπως έτσι... έγινε για πάντα..
+          Όλα ξεκίνησαν από ένα <span style={{ fontFamily: "var(--font-dancing), cursive", fontStyle: 'normal' }}>N-AI</span> και κάπως έτσι... έγινε για πάντα..
         </p>
 
         <h1
@@ -63,18 +63,13 @@ export default function Hero() {
         >
           Νάκης &amp; Αιμιλία
         </h1>
-
-        <p
-          style={{
-            fontFamily: "'TT Hoves', 'Geist', sans-serif",
-            fontSize: 'clamp(13px, 1.5vw, 16px)',
-            letterSpacing: '0.2em',
-            opacity: 0.8,
-          }}
-        >
-          N-AI
-        </p>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          #hero { min-height: 50vh !important; }
+        }
+      `}</style>
     </section>
   );
 }

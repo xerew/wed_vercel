@@ -336,8 +336,27 @@ export default function RSVP() {
       <style>{`
         #rsvp input::placeholder, #rsvp textarea::placeholder { color: #c9aaaa; }
         #rsvp select option { background: #f5ede0; color: #2d1414; }
-        @media (max-width: 700px) {
-          #rsvp > div { grid-template-columns: 1fr !important; gap: 52px !important; }
+        @media (max-width: 768px) {
+          #rsvp { padding: 48px 20px !important; position: relative !important; }
+          #rsvp > div { grid-template-columns: 1fr !important; gap: 0 !important; }
+          /* Photo: absolute top-right, next to the title */
+          #rsvp > div > div:first-child {
+            display: block !important;
+            position: absolute !important;
+            top: 0 !important;
+            right: 0 !important;
+            width: 150px !important;
+            z-index: 0 !important;
+          }
+          /* Remove flex centering and inner wrapper padding */
+          #rsvp > div > div:first-child > div { width: 100% !important; padding-right: 0 !important; padding-bottom: 0 !important; }
+          /* Hide offset outline */
+          #rsvp > div > div:first-child > div > div { display: none !important; }
+          /* Form column sits on top */
+          #rsvp > div > div:last-child { position: relative !important; z-index: 1 !important; }
+          /* Only title + subtitle get right padding so they sit beside the image */
+          #rsvp > div > div:last-child > h2 { padding-right: 160px !important; }
+          #rsvp > div > div:last-child > p { padding-right: 160px !important; }
         }
       `}</style>
     </section>

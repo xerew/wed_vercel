@@ -121,8 +121,31 @@ export default function Venue() {
       </div>
 
       <style>{`
-        @media (max-width: 700px) {
-          #venue > div { grid-template-columns: 1fr !important; }
+        @media (max-width: 768px) {
+          #venue { padding: 48px 20px !important; }
+          #venue > div { grid-template-columns: 1fr !important; gap: 32px !important; }
+          /* Rings image: pull to top-right next to Contact Details, behind text */
+          #venue > div > div:first-child > img {
+            display: block !important;
+            position: absolute !important;
+            top: 12px !important;
+            right: 0 !important;
+            left: auto !important;
+            margin-top: 0 !important;
+            width: 160px !important;
+            z-index: 0 !important;
+          }
+          /* Contact Details heading stays on top */
+          #venue > div > div:first-child {
+            position: relative !important;
+            z-index: 1 !important;
+          }
+          #venue > div > div:last-child > div > div:first-child {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+            padding: 32px 0 !important;
+          }
+          #venue > div > div:last-child iframe { height: 220px !important; }
         }
       `}</style>
     </section>

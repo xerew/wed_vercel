@@ -132,6 +132,7 @@ export default function Schedule() {
       {/* Modal */}
       {modalOpen && (
         <div
+          id="schedule-modal-overlay"
           onClick={() => setModalOpen(false)}
           style={{
             position: 'fixed',
@@ -144,6 +145,7 @@ export default function Schedule() {
           }}
         >
           <div
+            id="schedule-modal"
             onClick={(e) => e.stopPropagation()}
             style={{
               background: '#0d0d0d',
@@ -186,7 +188,7 @@ export default function Schedule() {
                 fontStyle: 'italic',
               }}
             >
-              May the force be with you.. Always
+              May the force be with you.. Always!
             </p>
 
             <button
@@ -211,8 +213,29 @@ export default function Schedule() {
       )}
 
       <style>{`
-        @media (max-width: 700px) {
-          #schedule .grid { grid-template-columns: 1fr !important; }
+        @media (max-width: 768px) {
+          #schedule { padding: 48px 20px !important; }
+          #schedule > div { padding-bottom: 80px !important; }
+          #schedule > div > div:last-child { grid-template-columns: 1fr !important; gap: 32px !important; }
+          /* Church image: use :not() to avoid matching the Grogu image inside the modal */
+          #schedule > div:not(#schedule-modal-overlay) > div:last-child > img {
+            position: absolute !important;
+            top: 12px !important;
+            right: 0 !important;
+            width: 200px !important;
+            display: block !important;
+            z-index: 0 !important;
+          }
+          /* Header text sits on top of the church image */
+          #schedule > div:not(#schedule-modal-overlay) > div:first-child {
+            position: relative !important;
+            z-index: 1 !important;
+            margin-bottom: 32px !important;
+          }
+          #schedule > img[src*="champagne"] { width: 200px !important; bottom: 0 !important; right: 0 !important; }
+          #schedule > img[src*="starwars"] { width: 52px !important; bottom: 16px !important; left: 16px !important; }
+          /* Modal: centered, scrollable if content is taller than viewport */
+          #schedule-modal-overlay { overflow-y: auto !important; align-items: center !important; }
         }
       `}</style>
     </section>

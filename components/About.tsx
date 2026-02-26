@@ -79,8 +79,10 @@ export default function About() {
       </div>
 
       <style>{`
-        @media (max-width: 700px) {
-          #about > div > div:last-child { grid-template-columns: 1fr !important; gap: 60px !important; }
+        @media (max-width: 768px) {
+          #about { padding: 48px 20px !important; }
+          #about > div > div:last-child { grid-template-columns: 1fr !important; gap: 48px !important; }
+          #about > div > h2 { margin-bottom: 40px !important; }
         }
       `}</style>
     </section>
