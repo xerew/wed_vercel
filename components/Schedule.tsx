@@ -1,3 +1,7 @@
+'use client';
+
+import { useState } from 'react';
+
 const events = [
   { time: '06:00 PM', title: 'Wedding Ceremony' },
   { time: '09:00 PM', title: 'Dinner' },
@@ -5,6 +9,8 @@ const events = [
 ];
 
 export default function Schedule() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <section id="schedule" style={{ position: 'relative', background: '#fff', minHeight: '85vh', display: 'flex', alignItems: 'center', padding: '60px 40px', overflow: 'hidden' }}>
       <img
@@ -20,6 +26,33 @@ export default function Schedule() {
           pointerEvents: 'none',
         }}
       />
+
+      {/* Star Wars easter egg — bottom left */}
+      <img
+        src="/starwars_section_2.png"
+        alt="This is the way"
+        onClick={() => setModalOpen(true)}
+        style={{
+          position: 'absolute',
+          bottom: 24,
+          left: 32,
+          width: '72px',
+          height: 'auto',
+          zIndex: 2,
+          cursor: 'pointer',
+          opacity: 0.85,
+          transition: 'opacity 0.2s, transform 0.2s',
+        }}
+        onMouseEnter={(e) => {
+          (e.target as HTMLImageElement).style.opacity = '1';
+          (e.target as HTMLImageElement).style.transform = 'scale(1.08)';
+        }}
+        onMouseLeave={(e) => {
+          (e.target as HTMLImageElement).style.opacity = '0.85';
+          (e.target as HTMLImageElement).style.transform = 'scale(1)';
+        }}
+      />
+
       <div style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', width: '100%', display: 'flex', flexDirection: 'column' }}>
 
         {/* Header — top left, above the grid */}
@@ -95,6 +128,87 @@ export default function Schedule() {
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      {modalOpen && (
+        <div
+          onClick={() => setModalOpen(false)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0,0,0,0.75)',
+            zIndex: 1000,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: '#0d0d0d',
+              borderRadius: '16px',
+              padding: '48px 40px',
+              maxWidth: '420px',
+              width: '90%',
+              textAlign: 'center',
+              border: '1px solid rgba(255,255,255,0.1)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '24px',
+            }}
+          >
+            <p
+              style={{
+                fontFamily: "'TT Hoves', var(--font-sans)",
+                fontSize: 'clamp(18px, 2vw, 24px)',
+                letterSpacing: '0.25em',
+                textTransform: 'uppercase',
+                color: '#ffe81f',
+              }}
+            >
+              This is the way
+            </p>
+
+            <img
+              src="/grogu_modal.png"
+              alt="Grogu"
+              style={{ width: '220px', height: 'auto' }}
+            />
+
+            <p
+              style={{
+                fontFamily: "'TT Hoves', var(--font-sans)",
+                fontSize: 'clamp(14px, 1.4vw, 17px)',
+                color: 'rgba(255,255,255,0.75)',
+                letterSpacing: '0.06em',
+                fontStyle: 'italic',
+              }}
+            >
+              May the force be with you.. Always
+            </p>
+
+            <button
+              onClick={() => setModalOpen(false)}
+              style={{
+                marginTop: '8px',
+                background: 'transparent',
+                border: '1px solid rgba(255,255,255,0.2)',
+                color: 'rgba(255,255,255,0.5)',
+                padding: '8px 24px',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontFamily: "'TT Hoves', var(--font-sans)",
+                fontSize: '13px',
+                letterSpacing: '0.1em',
+              }}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
 
       <style>{`
         @media (max-width: 700px) {
