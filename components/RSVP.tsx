@@ -102,14 +102,7 @@ export default function RSVP() {
       >
         {/* Left — couple photo with offset outline */}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <div
-            style={{
-              position: 'relative',
-              width: '85%',
-              paddingRight: '20px',
-              paddingBottom: '20px',
-            }}
-          >
+          <div style={{ position: 'relative', width: '85%' }}>
             <img
               src="/couple_section_5.png"
               alt="Νάκης & Αιμιλία"
@@ -117,23 +110,9 @@ export default function RSVP() {
                 width: '100%',
                 height: 'auto',
                 display: 'block',
-                position: 'relative',
-                zIndex: 1,
                 borderRadius: '20px',
               }}
               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                top: '20px',
-                left: '20px',
-                right: 0,
-                bottom: 0,
-                border: '5px solid #2d1414',
-                zIndex: 0,
-                borderRadius: '20px',
-              }}
             />
           </div>
         </div>

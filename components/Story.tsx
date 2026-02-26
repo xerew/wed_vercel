@@ -94,14 +94,7 @@ export default function Story() {
             alignItems: 'center',
           }}
         >
-          <div
-            style={{
-              position: 'relative',
-              width: '75%',
-              paddingRight: '20px',
-              paddingBottom: '20px',
-            }}
-          >
+          <div style={{ position: 'relative', width: '75%' }}>
             <img
               src="/couple_pic_section_3.JPG"
               alt="Our story"
@@ -109,20 +102,6 @@ export default function Story() {
                 width: '100%',
                 height: 'auto',
                 display: 'block',
-                position: 'relative',
-                zIndex: 1,
-                borderRadius: '20px',
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                top: '20px',
-                left: '20px',
-                right: 0,
-                bottom: 0,
-                border: '5px solid #2d1414',
-                zIndex: 0,
                 borderRadius: '20px',
               }}
             />

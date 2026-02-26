@@ -1,12 +1,14 @@
 const contacts = [
   {
     name: 'Τελετή',
-    address: '123 Οδός Γάμου\nΑθήνα 10000\nΕλλάδα',
+    address: 'Church of Prophet Elias\nMikrolimano\n190 01',
+    directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Church+of+Prophet+Elias+Mikrolimano+190+01+Greece',
     mapSrc: 'https://maps.google.com/maps?q=37.758934,24.0781474&z=14&output=embed',
   },
   {
     name: 'Δεξίωση',
-    address: '456 Οδός Δεξίωσης\nΑθήνα 10000\nΕλλάδα',
+    address: '34ο χλμ Λεωφ. Μαρκοπούλου - Λαυρίου\nΜαρκόπουλο Αττικής\nΛεωφ. Λαυρίου, ΜΑΡΚΟΠΟΥΛΟ ΑΤΤΙΚΗΣ 190 10',
+    directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=34+xlm+Leoforos+Markopoulo+Lavriou+Markopoulo+Attikis+190+10+Greece',
     mapSrc: 'https://maps.google.com/maps?q=37.849247,23.938608&z=14&output=embed',
   },
 ];
@@ -84,17 +86,27 @@ export default function Venue() {
                   >
                     {c.name}
                   </div>
-                  <p
-                    style={{
-                      fontFamily: "'TT Hoves', var(--font-sans)",
-                      fontSize: 'clamp(16px, 1.6vw, 22px)',
-                      color: 'rgba(255,255,255,0.85)',
-                      lineHeight: 1.9,
-                      whiteSpace: 'pre-line',
-                    }}
+                  <a
+                    href={c.directionsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: 'none' }}
                   >
-                    {c.address}
-                  </p>
+                    <p
+                      style={{
+                        fontFamily: "'TT Hoves', var(--font-sans)",
+                        fontSize: 'clamp(16px, 1.6vw, 22px)',
+                        color: 'rgba(255,255,255,0.85)',
+                        lineHeight: 1.9,
+                        whiteSpace: 'pre-line',
+                        transition: 'color 0.2s',
+                      }}
+                      onMouseEnter={(e) => { (e.target as HTMLParagraphElement).style.color = '#fff'; }}
+                      onMouseLeave={(e) => { (e.target as HTMLParagraphElement).style.color = 'rgba(255,255,255,0.85)'; }}
+                    >
+                      {c.address}
+                    </p>
+                  </a>
                 </div>
 
                 {/* Map — bigger, rounder corners */}

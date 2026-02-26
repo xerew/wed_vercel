@@ -220,9 +220,9 @@ export default function Schedule() {
           /* Church image: use :not() to avoid matching the Grogu image inside the modal */
           #schedule > div:not(#schedule-modal-overlay) > div:last-child > img {
             position: absolute !important;
-            top: 12px !important;
-            right: 0 !important;
-            width: 200px !important;
+            top: -70px !important;
+            right: -20px !important;
+            width: 220px !important;
             display: block !important;
             z-index: 0 !important;
           }
@@ -231,6 +231,11 @@ export default function Schedule() {
             position: relative !important;
             z-index: 1 !important;
             margin-bottom: 32px !important;
+          }
+          /* Same font as "Our Love Story" */
+          #schedule > div:not(#schedule-modal-overlay) > div:first-child h2 {
+            font-family: 'Amiable Song', var(--font-serif) !important;
+            font-weight: 400 !important;
           }
           #schedule > img[src*="champagne"] { width: 200px !important; bottom: 0 !important; right: 0 !important; }
           #schedule > img[src*="starwars"] { width: 52px !important; bottom: 16px !important; left: 16px !important; }
