@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Playfair_Display, Cormorant_Garamond, Dancing_Script } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -47,6 +49,8 @@ export default function RootLayout({
     <html lang="en">
       <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${cormorant.variable} ${dancingScript.variable}`}>
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
