@@ -67,7 +67,7 @@ export default function Schedule() {
               letterSpacing: '-0.5px',
             }}
           >
-            Schedule of Events
+            Schedule of <br id="schedule-title-br" />Events
           </h2>
           <p style={{ fontSize: 'clamp(16px, 1.6vw, 20px)', color: '#9e3030', letterSpacing: '0.06em' }}>
             September 19, 2026
@@ -213,14 +213,16 @@ export default function Schedule() {
       )}
 
       <style>{`
+        #schedule-title-br { display: none; }
         @media (max-width: 768px) {
+          #schedule-title-br { display: block !important; }
           #schedule { padding: 48px 20px !important; }
           #schedule > div { padding-bottom: 80px !important; }
           #schedule > div > div:last-child { grid-template-columns: 1fr !important; gap: 32px !important; }
-          /* Church image: use :not() to avoid matching the Grogu image inside the modal */
+          /* Church image: aligned to the right of the title */
           #schedule > div:not(#schedule-modal-overlay) > div:last-child > img {
             position: absolute !important;
-            top: -70px !important;
+            top: 0 !important;
             right: -20px !important;
             width: 220px !important;
             display: block !important;
@@ -237,7 +239,7 @@ export default function Schedule() {
             font-family: 'Amiable Song', var(--font-serif) !important;
             font-weight: 400 !important;
           }
-          #schedule > img[src*="champagne"] { width: 200px !important; bottom: 0 !important; right: 0 !important; }
+          #schedule > img[src*="champagne"] { width: 160px !important; bottom: 0 !important; right: -10px !important; }
           #schedule > img[src*="starwars"] { width: 52px !important; bottom: 16px !important; left: 16px !important; }
           /* Modal: centered, scrollable if content is taller than viewport */
           #schedule-modal-overlay { overflow-y: auto !important; align-items: center !important; }

@@ -7,8 +7,8 @@ const contacts = [
   },
   {
     name: 'Δεξίωση',
-    address: '34ο χλμ Λεωφ. Μαρκοπούλου - Λαυρίου\nΜαρκόπουλο Αττικής\nΛεωφ. Λαυρίου, ΜΑΡΚΟΠΟΥΛΟ ΑΤΤΙΚΗΣ 190 10',
-    directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=34+xlm+Leoforos+Markopoulo+Lavriou+Markopoulo+Attikis+190+10+Greece',
+    address: 'Πολυχώρος Ονείρων\n34ο χλμ Λεωφ. Μαρκοπούλου - Λαυρίου\nΜαρκόπουλο Αττικής 190 10',
+    directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=37.849247,23.938608',
     mapSrc: 'https://maps.google.com/maps?q=37.849247,23.938608&z=14&output=embed',
   },
 ];

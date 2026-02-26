@@ -20,6 +20,7 @@ export default function EnvelopeIntro({
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+    videoRef.current?.load();
     return () => { document.body.style.overflow = ''; };
   }, []);
 
@@ -57,6 +58,7 @@ export default function EnvelopeIntro({
             onEnded={handleVideoEnd}
             muted
             playsInline
+            preload="auto"
             style={{
               position: 'absolute',
               top: '50%',
