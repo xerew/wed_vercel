@@ -7,8 +7,8 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzU4OJKLEjKQkAhKkSN6
 
 export default function RSVP() {
   const [attending, setAttending] = useState<'yes' | 'no' | ''>('');
-  const [guestCount, setGuestCount] = useState<0 | 1 | 2>(0);
-  const [childrenCount, setChildrenCount] = useState<0 | 1 | 2>(0);
+  const [guestCount, setGuestCount] = useState<0 | 1 | 2 | 3 | 4>(0);
+  const [childrenCount, setChildrenCount] = useState<0 | 1 | 2 | 3 | 4>(0);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -25,6 +25,8 @@ export default function RSVP() {
     const guestNames = [
       getValue('guest1'),
       getValue('guest2'),
+      getValue('guest3'),
+      getValue('guest4'),
     ].filter(Boolean).join(', ');
 
     const data = {
@@ -132,8 +134,16 @@ export default function RSVP() {
               >
                 Ευχαριστούμε!
               </h2>
-              <p style={{ fontFamily: "'TT Hoves', var(--font-sans)", color: '#9e7878', fontSize: '17px' }}>
-                Λάβαμε την απάντησή σας. Ανυπομονούμε να σας δούμε!
+              <p style={{ fontFamily: "'TT Hoves', var(--font-sans)", color: '#9e7878', fontSize: '17px', lineHeight: 1.8 }}>
+                {attending === 'no' ? (
+                  <>
+                    Σε ευχαριστούμε που μας ενημέρωσες.<br />
+                    Θα μας λείψεις πολύ εκείνη τη μέρα!<br />
+                    Ανυπομονούμε να τα πούμε από κοντά σύντομα!
+                  </>
+                ) : (
+                  'Λάβαμε την απάντησή σας. Ανυπομονούμε να σας δούμε!'
+                )}
               </p>
             </div>
           ) : (
@@ -212,13 +222,15 @@ export default function RSVP() {
                         name="guests"
                         value={guestCount}
                         onChange={(e) => {
-                          setGuestCount(Number(e.target.value) as 0 | 1 | 2);
+                          setGuestCount(Number(e.target.value) as 0 | 1 | 2 | 3 | 4);
                         }}
                         style={{ ...inputStyle, cursor: 'pointer' }}
                       >
                         <option value={0}>0 — Έρχομαι μόνος/η</option>
                         <option value={1}>1 συνοδός</option>
                         <option value={2}>2 συνοδοί</option>
+                        <option value={3}>3 συνοδοί</option>
+                        <option value={4}>4 συνοδοί</option>
                       </select>
                     </div>
 
@@ -235,6 +247,18 @@ export default function RSVP() {
                         <input name="guest2" style={inputStyle} placeholder="Ονοματεπώνυμο" />
                       </div>
                     )}
+                    {guestCount >= 3 && (
+                      <div>
+                        <label style={labelStyle}>Όνομα 3ου συνοδού</label>
+                        <input name="guest3" style={inputStyle} placeholder="Ονοματεπώνυμο" />
+                      </div>
+                    )}
+                    {guestCount >= 4 && (
+                      <div>
+                        <label style={labelStyle}>Όνομα 4ου συνοδού</label>
+                        <input name="guest4" style={inputStyle} placeholder="Ονοματεπώνυμο" />
+                      </div>
+                    )}
 
                     {/* Children */}
                     <div>
@@ -242,12 +266,14 @@ export default function RSVP() {
                       <select
                         name="children"
                         value={childrenCount}
-                        onChange={(e) => setChildrenCount(Number(e.target.value) as 0 | 1 | 2)}
+                        onChange={(e) => setChildrenCount(Number(e.target.value) as 0 | 1 | 2 | 3 | 4)}
                         style={{ ...inputStyle, cursor: 'pointer' }}
                       >
                         <option value={0}>Όχι</option>
                         <option value={1}>1 παιδί</option>
                         <option value={2}>2 παιδιά</option>
+                        <option value={3}>3 παιδιά</option>
+                        <option value={4}>4 παιδιά</option>
                       </select>
                     </div>
                   </>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const events = [
   { time: '06:00 PM', title: 'Wedding Ceremony' },
@@ -10,6 +10,21 @@ const events = [
 
 export default function Schedule() {
   const [modalOpen, setModalOpen] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const openModal = () => {
+    const audio = new Audio('/cantina_sw.mp3');
+    audio.loop = true;
+    audio.play();
+    audioRef.current = audio;
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    audioRef.current?.pause();
+    audioRef.current = null;
+    setModalOpen(false);
+  };
 
   return (
     <section id="schedule" style={{ position: 'relative', background: '#fff', minHeight: '85vh', display: 'flex', alignItems: 'center', padding: '60px 40px', overflow: 'hidden' }}>
@@ -31,7 +46,7 @@ export default function Schedule() {
       <img
         src="/starwars_section_2.png"
         alt="This is the way"
-        onClick={() => setModalOpen(true)}
+        onClick={openModal}
         style={{
           position: 'absolute',
           bottom: 24,
@@ -133,7 +148,7 @@ export default function Schedule() {
       {modalOpen && (
         <div
           id="schedule-modal-overlay"
-          onClick={() => setModalOpen(false)}
+          onClick={closeModal}
           style={{
             position: 'fixed',
             inset: 0,
@@ -174,9 +189,9 @@ export default function Schedule() {
             </p>
 
             <img
-              src="/grogu_modal.png"
-              alt="Grogu"
-              style={{ width: '220px', height: 'auto' }}
+              src="/starwars_dancing.gif"
+              alt="Star Wars"
+              style={{ width: '100%', height: 'auto' }}
             />
 
             <p
@@ -188,11 +203,11 @@ export default function Schedule() {
                 fontStyle: 'italic',
               }}
             >
-              May the force be with you.. Always!
+              May the force be with you.. and keep your lightsabers ready for the dance floor!
             </p>
 
             <button
-              onClick={() => setModalOpen(false)}
+              onClick={closeModal}
               style={{
                 marginTop: '8px',
                 background: 'transparent',

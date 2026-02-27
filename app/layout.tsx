@@ -33,7 +33,7 @@ const dancingScript = Dancing_Script({
 
 
 export const metadata: Metadata = {
-  title: "Nikos & Emilia — Wedding",
+  title: "We Said N-AI | Nakis & Aimilia",
   description: "Wedding site & RSVP",
 };
 
