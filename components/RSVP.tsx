@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 // ── After deploying your Google Apps Script, paste the URL here ──
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzU4OJKLEjKQkAhKkSN6HEOK7g6Warhs6cdPT6-adOuM4FBLZpWujs7f3oym_u9HkD1/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwiNHlORzt9wfhwlcCVA_idRzQSy3HJenij2XgJeqaCNLxahhiQeSEUGy_xQec8BA/exec';
 
 export default function RSVP() {
   const [attending, setAttending] = useState<'yes' | 'no' | ''>('');
@@ -138,11 +138,10 @@ export default function RSVP() {
                 {attending === 'no' ? (
                   <>
                     Σε ευχαριστούμε που μας ενημέρωσες.<br />
-                    Θα μας λείψεις πολύ εκείνη τη μέρα!<br />
-                    Ανυπομονούμε να τα πούμε από κοντά σύντομα!
+                    Θα μας λείψεις πολύ εκείνη τη μέρα!
                   </>
                 ) : (
-                  'Λάβαμε την απάντησή σας. Ανυπομονούμε να σας δούμε!'
+                  'Λάβαμε την απάντησή σας. Ανυπομονούμε να σας δούμε! 🎉'
                 )}
               </p>
             </div>
