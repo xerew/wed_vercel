@@ -74,9 +74,9 @@ export default function Schedule() {
         <div style={{ marginBottom: '52px' }}>
           <h2
             style={{
-              fontFamily: 'var(--font-serif)',
+              fontFamily: "'Amiable Song', var(--font-serif)",
               fontSize: 'clamp(48px, 7vw, 82px)',
-              fontWeight: 300,
+              fontWeight: 400,
               color: '#2d1f1f',
               marginBottom: '12px',
               letterSpacing: '-0.5px',

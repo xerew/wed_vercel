@@ -1,15 +1,27 @@
+'use client';
+
+import dynamic from 'next/dynamic';
+
+const MapLeaflet = dynamic(() => import('./MapLeaflet'), { ssr: false });
+
 const contacts = [
   {
     name: 'Τελετή',
-    address: 'Church of Prophet Elias\nMikrolimano\n190 01',
+    label: 'Ιερός Ναός Προφήτη Ηλία Θορικού Κερατέας',
+    lat: 37.758934,
+    lng: 24.0781474,
+    zoom: 15,
+    address: 'Ιερός Ναός Προφήτη Ηλία Θορικού\nΛεωφ. Περιγιάλι\nΚερατέα\n190 01',
     directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Church+of+Prophet+Elias+Mikrolimano+190+01+Greece',
-    mapSrc: 'https://maps.google.com/maps?q=37.758934,24.0781474&z=14&output=embed',
   },
   {
-    name: 'Δεξίωση',
+    name: 'Πάρτυ',
+    label: 'Πολυχώρος Ονείρων',
+    lat: 37.849247,
+    lng: 23.938608,
+    zoom: 13,
     address: 'Πολυχώρος Ονείρων\n34ο χλμ Λεωφ. Μαρκοπούλου - Λαυρίου\nΜαρκόπουλο Αττικής 190 10',
     directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=37.849247,23.938608',
-    mapSrc: 'https://maps.google.com/maps?q=37.849247,23.938608&z=14&output=embed',
   },
 ];
 
@@ -109,17 +121,9 @@ export default function Venue() {
                   </a>
                 </div>
 
-                {/* Map — bigger, rounder corners */}
+                {/* Map — Leaflet with heart marker */}
                 <div style={{ borderRadius: '20px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.25)' }}>
-                  <iframe
-                    src={c.mapSrc}
-                    width="100%"
-                    height="320"
-                    style={{ display: 'block', border: 0 }}
-                    loading="lazy"
-                    allowFullScreen
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
+                  <MapLeaflet lat={c.lat} lng={c.lng} zoom={c.zoom} label={c.label} height={320} />
                 </div>
               </div>
 
@@ -157,7 +161,6 @@ export default function Venue() {
             gap: 20px !important;
             padding: 32px 0 !important;
           }
-          #venue > div > div:last-child iframe { height: 220px !important; }
         }
       `}</style>
     </section>
