@@ -8,18 +8,25 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'TT Hoves';
-  src: url('/fonts/TTHoves-Regular.otf') format('opentype'),
-       url('/fonts/TTHoves-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-}
 
 @font-face {
   font-family: 'Amiable Song';
   src: url('/fonts/Amiable.otf') format('opentype');
   font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noteworthy';
+  src: url('/fonts/Noteworthy.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noteworthy';
+  src: url('/fonts/Noteworthy Bold.otf') format('opentype');
+  font-weight: 700;
   font-style: normal;
 }
 

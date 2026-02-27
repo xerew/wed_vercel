@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 
 const events = [
   { time: '06:00 PM', title: 'Wedding Ceremony' },
-  { time: '07:00 PM', title: 'Welcome Drinks' },
+  { time: '08:00 PM', title: 'Welcome Drinks' },
   { time: '09:00 PM', title: 'Dinner' },
   { time: '11:00 PM', title: 'Cocktails & Party' },
 ];
@@ -57,16 +57,6 @@ export default function Schedule() {
           height: 'auto',
           zIndex: 2,
           cursor: 'pointer',
-          opacity: 0.85,
-          transition: 'opacity 0.2s, transform 0.2s',
-        }}
-        onMouseEnter={(e) => {
-          (e.target as HTMLImageElement).style.opacity = '1';
-          (e.target as HTMLImageElement).style.transform = 'scale(1.08)';
-        }}
-        onMouseLeave={(e) => {
-          (e.target as HTMLImageElement).style.opacity = '0.85';
-          (e.target as HTMLImageElement).style.transform = 'scale(1)';
         }}
       />
 
@@ -230,6 +220,14 @@ export default function Schedule() {
       )}
 
       <style>{`
+        @keyframes deathstar-float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
+        }
+        #schedule > img[src*="starwars"] {
+          opacity: 0.85;
+          animation: deathstar-float 3.5s ease-in-out infinite;
+        }
         #schedule-title-br { display: none; }
         @media (max-width: 768px) {
           #schedule-title-br { display: block !important; }

@@ -43,7 +43,7 @@ export default function Home() {
           color: '#c9aaaa',
           letterSpacing: '0.08em',
         }}>
-          made with ♥ by Xerew
+          made with ♥ by the groom
         </footer>
       </motion.main>
     </>

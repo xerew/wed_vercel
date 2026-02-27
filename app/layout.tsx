@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Playfair_Display, Cormorant_Garamond, Dancing_Script } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display, Cormorant_Garamond, Dancing_Script, DM_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -31,6 +31,12 @@ const dancingScript = Dancing_Script({
   subsets: ["latin"],
 });
 
+const dmSans = DM_Sans({
+  variable: "--font-sans",
+  weight: ["300", "400", "500"],
+  subsets: ["latin"],
+});
+
 
 export const metadata: Metadata = {
   title: "We Said N-AI | Nakis & Aimilia",
@@ -47,7 +53,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${cormorant.variable} ${dancingScript.variable}`}>
+      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${cormorant.variable} ${dancingScript.variable} ${dmSans.variable}`}>
         {children}
         <Analytics />
         <SpeedInsights />
