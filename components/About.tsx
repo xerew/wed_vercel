@@ -1,14 +1,14 @@
 const items = [
   {
     src: '/Church_section_2.png',
-    alt: 'Εκκλησία',
-    title: 'Εκκλησία',
+    alt: 'Η Εκκλησία',
+    title: 'Η Εκκλησία',
     description: 'Μοιραστείτε λεπτομέρειες για την τελετή σας, τη δεξίωση ή οποιοδήποτε άλλο πρόγραμμα της ημέρας.',
   },
   {
     src: '/party_section_2.png',
-    alt: 'Το πάρτυ',
-    title: 'Το πάρτυ',
+    alt: 'Το Πάρτυ',
+    title: 'Το Πάρτυ',
     description: 'Μοιραστείτε λεπτομέρειες για τη δεξίωση, το γλέντι και ό,τι άλλο περιλαμβάνει η βραδιά σας.',
   },
 ];
@@ -19,9 +19,9 @@ export default function About() {
       <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
         <h2
           style={{
-            fontFamily: 'var(--font-serif)',
+            fontFamily: "'Amiable Song', var(--font-serif)",
             fontSize: 'clamp(34px, 5vw, 56px)',
-            fontWeight: 300,
+            fontWeight: 400,
             textAlign: 'center',
             color: '#3d1f1f',
             marginBottom: '64px',
@@ -53,7 +53,7 @@ export default function About() {
               />
               <h3
                 style={{
-                  fontFamily: 'var(--font-script)',
+                  fontFamily: "'Sloop Script Pro', cursive",
                   fontSize: 'clamp(28px, 3.5vw, 42px)',
                   fontWeight: 400,
                   color: '#3d1f1f',

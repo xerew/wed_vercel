@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 
 const events = [
   { time: '06:00 PM', title: 'Wedding Ceremony' },
+  { time: '07:00 PM', title: 'Welcome Drinks' },
   { time: '09:00 PM', title: 'Dinner' },
   { time: '11:00 PM', title: 'Cocktails & Party' },
 ];
@@ -15,6 +16,7 @@ export default function Schedule() {
   const openModal = () => {
     const audio = new Audio('/cantina_sw.mp3');
     audio.loop = true;
+    audio.currentTime = 0.7;
     audio.play();
     audioRef.current = audio;
     setModalOpen(true);

@@ -34,6 +34,17 @@ export default function Home() {
         <Schedule />
         <Venue />
         <RSVP />
+        <footer style={{
+          textAlign: 'center',
+          padding: '10px',
+          background: '#f5ede0',
+          fontFamily: "'TT Hoves', var(--font-sans)",
+          fontSize: '12px',
+          color: '#c9aaaa',
+          letterSpacing: '0.08em',
+        }}>
+          made with ♥ by Xerew
+        </footer>
       </motion.main>
     </>
   );
