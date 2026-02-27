@@ -279,21 +279,24 @@ export default function RSVP() {
                   </>
                 )}
 
-                {/* Dietary */}
-                <div>
-                  <label style={labelStyle}>Αλλεργίες / Διατροφικές προτιμήσεις (προαιρετικό)</label>
-                  <input
-                    name="dietary"
-                    style={inputStyle}
-                    placeholder="π.χ. χορτοφαγία, αλλεργία στους ξηρούς καρπούς..."
-                  />
-                </div>
+                {/* Dietary + Song request — only if attending */}
+                {attending !== 'no' && (
+                  <>
+                    <div>
+                      <label style={labelStyle}>Αλλεργίες / Διατροφικές προτιμήσεις (προαιρετικό)</label>
+                      <input
+                        name="dietary"
+                        style={inputStyle}
+                        placeholder="π.χ. χορτοφαγία, αλλεργία στους ξηρούς καρπούς..."
+                      />
+                    </div>
 
-                {/* Song request */}
-                <div>
-                  <label style={labelStyle}>Αίτημα τραγουδιού για το πάρτι 🎶</label>
-                  <input name="songRequest" style={inputStyle} placeholder="π.χ. Dancing Queen - ABBA" />
-                </div>
+                    <div>
+                      <label style={labelStyle}>Αίτημα τραγουδιού για το πάρτι 🎶</label>
+                      <input name="songRequest" style={inputStyle} placeholder="π.χ. Dancing Queen - ABBA" />
+                    </div>
+                  </>
+                )}
 
                 {/* Message */}
                 <div>
