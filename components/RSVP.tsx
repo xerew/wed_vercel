@@ -330,7 +330,7 @@ export default function RSVP() {
                     border: 'none',
                     cursor: submitting ? 'not-allowed' : 'pointer',
                     opacity: submitting ? 0.6 : 1,
-                    borderRadius: '2px',
+                    borderRadius: '50px',
                   }}
                 >
                   {submitting ? 'Αποστολή...' : 'Αποστολή'}
