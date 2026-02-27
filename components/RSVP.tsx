@@ -323,7 +323,7 @@ export default function RSVP() {
                     fontFamily: 'var(--font-serif)',
                     fontSize: 'clamp(13px, 1.3vw, 16px)',
                     letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
+                    textTransform: 'none',
                     border: 'none',
                     cursor: submitting ? 'not-allowed' : 'pointer',
                     opacity: submitting ? 0.6 : 1,
