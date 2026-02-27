@@ -11,7 +11,7 @@ interface MapLeafletProps {
   height?: number;
 }
 
-export default function MapLeaflet({ lat, lng, zoom, label, height = 320 }: MapLeafletProps) {
+export default function MapLeaflet({ lat, lng, zoom, label, height }: MapLeafletProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -20,6 +20,7 @@ export default function MapLeaflet({ lat, lng, zoom, label, height = 320 }: MapL
 
     let map: import('leaflet').Map | null = null;
     let cancelled = false;
+    let resizeObserver: ResizeObserver | null = null;
 
     (async () => {
       const L = (await import('leaflet')).default;
@@ -54,10 +55,17 @@ export default function MapLeaflet({ lat, lng, zoom, label, height = 320 }: MapL
       });
 
       L.marker([lat, lng], { icon: heartIcon }).addTo(map);
+
+      // Whenever the container is resized (e.g. grid stretches it), tell Leaflet to redraw
+      resizeObserver = new ResizeObserver(() => {
+        map?.invalidateSize();
+      });
+      resizeObserver.observe(container);
     })();
 
     return () => {
       cancelled = true;
+      resizeObserver?.disconnect();
       if (map) {
         map.remove();
         map = null;
@@ -65,5 +73,10 @@ export default function MapLeaflet({ lat, lng, zoom, label, height = 320 }: MapL
     };
   }, [lat, lng, zoom, label]);
 
-  return <div ref={containerRef} style={{ width: '100%', height: `${height}px` }} />;
+  return (
+    <div
+      ref={containerRef}
+      style={{ width: '100%', height: height ? `${height}px` : '100%', minHeight: '280px' }}
+    />
+  );
 }

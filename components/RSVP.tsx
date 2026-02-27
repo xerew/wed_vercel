@@ -74,7 +74,7 @@ export default function RSVP() {
     display: 'block',
     fontSize: '11px',
     letterSpacing: '0.12em',
-    textTransform: 'uppercase',
+    textTransform: 'none',
     color: '#9e7878',
     marginBottom: '4px',
     fontFamily: "'TT Hoves', var(--font-sans)",

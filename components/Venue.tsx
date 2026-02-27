@@ -10,8 +10,8 @@ const contacts = [
     label: 'Ιερός Ναός Προφήτη Ηλία Θορικού Κερατέας',
     lat: 37.758934,
     lng: 24.0781474,
-    zoom: 15,
-    address: 'Ιερός Ναός Προφήτη Ηλία Θορικού\nΛεωφ. Περιγιάλι\nΚερατέα\n190 01',
+    zoom: 13,
+    address: 'Ιερός Ναός Προφήτη Ηλία Θορικού\nΛεωφ. Περιγιάλι\nΚερατέα 190 01',
     directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Church+of+Prophet+Elias+Mikrolimano+190+01+Greece',
   },
   {
@@ -98,32 +98,52 @@ export default function Venue() {
                   >
                     {c.name}
                   </div>
+                  <p
+                    style={{
+                      fontFamily: "'TT Hoves', var(--font-sans)",
+                      fontSize: 'clamp(16px, 1.6vw, 22px)',
+                      color: 'rgba(255,255,255,0.85)',
+                      lineHeight: 1.9,
+                      whiteSpace: 'pre-line',
+                      marginBottom: '28px',
+                    }}
+                  >
+                    {c.address}
+                  </p>
                   <a
                     href={c.directionsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ textDecoration: 'none' }}
+                    style={{
+                      display: 'inline-block',
+                      textDecoration: 'none',
+                      fontFamily: "'TT Hoves', var(--font-sans)",
+                      fontSize: 'clamp(13px, 1.1vw, 15px)',
+                      letterSpacing: '0.12em',
+                      textTransform: 'none',
+                      color: '#fff',
+                      border: '1px solid rgba(255,255,255,0.5)',
+                      borderRadius: '50px',
+                      padding: '10px 28px',
+                      background: 'rgba(255,255,255,0.1)',
+                      transition: 'background 0.2s, border-color 0.2s',
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.22)';
+                      (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.8)';
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.1)';
+                      (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.5)';
+                    }}
                   >
-                    <p
-                      style={{
-                        fontFamily: "'TT Hoves', var(--font-sans)",
-                        fontSize: 'clamp(16px, 1.6vw, 22px)',
-                        color: 'rgba(255,255,255,0.85)',
-                        lineHeight: 1.9,
-                        whiteSpace: 'pre-line',
-                        transition: 'color 0.2s',
-                      }}
-                      onMouseEnter={(e) => { (e.target as HTMLParagraphElement).style.color = '#fff'; }}
-                      onMouseLeave={(e) => { (e.target as HTMLParagraphElement).style.color = 'rgba(255,255,255,0.85)'; }}
-                    >
-                      {c.address}
-                    </p>
+                    Οδηγίες ↗
                   </a>
                 </div>
 
                 {/* Map — Leaflet with heart marker */}
-                <div style={{ borderRadius: '20px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.25)' }}>
-                  <MapLeaflet lat={c.lat} lng={c.lng} zoom={c.zoom} label={c.label} height={320} />
+                <div style={{ borderRadius: '20px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.25)', minHeight: '320px', height: '100%' }}>
+                  <MapLeaflet lat={c.lat} lng={c.lng} zoom={c.zoom} label={c.label} />
                 </div>
               </div>
 
