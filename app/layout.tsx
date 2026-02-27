@@ -34,7 +34,7 @@ const dancingScript = Dancing_Script({
 
 export const metadata: Metadata = {
   title: "We Said N-AI | Nakis & Aimilia",
-  description: "Wedding site & RSVP",
+  description: "Join us for our wedding celebration — September 19, 2026",
 };
 
 export const viewport: Viewport = {
