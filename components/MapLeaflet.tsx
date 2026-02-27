@@ -33,7 +33,7 @@ export default function MapLeaflet({ lat, lng, zoom, label, height }: MapLeaflet
         center: [lat, lng],
         zoom,
         zoomControl: false,
-        scrollWheelZoom: false,
+        scrollWheelZoom: true,
         attributionControl: false,
       });
 
