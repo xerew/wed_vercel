@@ -7,7 +7,7 @@ const items = [
     scale: 1.2,
   },
   {
-    src: '/party_section_2.png',
+    src: '/party_section_3.png',
     alt: 'Το Πάρτυ',
     title: 'Το Πάρτυ',
     description: 'Μετά την τελετή, ετοιμαστείτε για μια βραδιά γεμάτη μουσική, χορό και ατελείωτα χαμόγελα.',
