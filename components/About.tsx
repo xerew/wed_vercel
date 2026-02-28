@@ -4,12 +4,14 @@ const items = [
     alt: 'Η Εκκλησία',
     title: 'Η Εκκλησία',
     description: 'Σε μια εκκλησία δίπλα στη θάλασσα, θα μοιραστούμε αυτή τη στιγμή μαζί σας.',
+    scale: 1.2,
   },
   {
     src: '/party_section_2.png',
     alt: 'Το Πάρτυ',
     title: 'Το Πάρτυ',
     description: 'Μετά την τελετή, ετοιμαστείτε για μια βραδιά γεμάτη μουσική, χορό και ατελείωτα χαμόγελα.',
+    scale: 1,
   },
 ];
 
@@ -41,16 +43,19 @@ export default function About() {
         >
           {items.map((item) => (
             <div key={item.alt}>
-              <img
-                src={item.src}
-                alt={item.alt}
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block',
-                  marginBottom: '32px',
-                }}
-              />
+              <div style={{ height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '32px', overflow: 'hidden' }}>
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    display: 'block',
+                    transform: `scale(${item.scale})`,
+                  }}
+                />
+              </div>
               <h3
                 style={{
                   fontFamily: "'Sloop Script Pro', cursive",

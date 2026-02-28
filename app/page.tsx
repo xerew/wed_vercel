@@ -29,11 +29,17 @@ export default function Home() {
         transition={{ duration: 0.7 }}
       >
         <Hero />
-        <About />
-        <Story />
-        <Schedule />
-        <Venue />
-        <RSVP />
+        {[About, Story, Schedule, Venue, RSVP].map((Section, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            viewport={{ once: true, margin: '-80px' }}
+          >
+            <Section />
+          </motion.div>
+        ))}
         <footer style={{
           textAlign: 'center',
           padding: '10px',
