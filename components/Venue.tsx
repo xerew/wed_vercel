@@ -137,7 +137,7 @@ export default function Venue() {
                       (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.5)';
                     }}
                   >
-                    Οδηγίες ↗{'\uFE0E'}
+                    {'Οδηγίες ↗\uFE0E'}
                   </a>
                 </div>
 
