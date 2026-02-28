@@ -259,6 +259,12 @@ export default function Schedule() {
           /* Modal: centered, scrollable if content is taller than viewport */
           #schedule-modal-overlay { overflow-y: auto !important; align-items: center !important; }
         }
+        @media (max-width: 360px) {
+          #schedule > div:not(#schedule-modal-overlay) > div:last-child > img {
+            top: 15px !important;
+            right: -30px !important;
+          }
+        }
       `}</style>
     </section>
   );

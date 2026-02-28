@@ -56,7 +56,7 @@ export default function EnvelopeIntro({
           <video
             ref={videoRef}
             onEnded={handleVideoEnd}
-            //muted
+            muted
             playsInline
             preload="auto"
             style={{
