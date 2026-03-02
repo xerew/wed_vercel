@@ -34,7 +34,7 @@ export default function Hero() {
           position: 'relative',
           zIndex: 1,
           textAlign: 'center',
-          color: '#fff',
+          color: '#FCFCFC', //#fff
           padding: '0 24px',
         }}
       >

@@ -53,7 +53,7 @@ export default function Home() {
             // iOS releases the audio session when video ends — restart music here
             audioRef.current?.play().catch(() => {});
           }}
-          videoSrc="/wedding_19_09_opening_theone_fixed.mp4"
+          videoSrc="/final_video_fixed.mp4"
           onFirstTap={handleFirstTap}
         />
       )}

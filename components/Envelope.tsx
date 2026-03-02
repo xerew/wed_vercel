@@ -60,7 +60,7 @@ export default function EnvelopeIntro({
             onEnded={handleVideoEnd}
             playsInline
             preload="auto"
-            poster="/opening_poster.jpg"
+            poster="/final_video_poster.jpg"
             style={{
               position: 'absolute',
               top: '50%',
