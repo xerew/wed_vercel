@@ -15,12 +15,19 @@ export default function EnvelopeIntro({
   videoSrc = '/envelope-video.mp4',
 }: EnvelopeIntroProps) {
   const [done, setDone] = useState(false);
+  const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = ''; };
   }, []);
+
+  const handleTap = () => {
+    if (playing) return;
+    setPlaying(true);
+    videoRef.current?.play();
+  };
 
   const handleVideoEnd = () => {
     setDone(true);
@@ -32,12 +39,14 @@ export default function EnvelopeIntro({
       {!done && (
         <motion.div
           key="intro"
+          onClick={handleTap}
           style={{
             position: 'fixed',
             inset: 0,
             zIndex: 9999,
             background: '#000',
             overflow: 'hidden',
+            cursor: playing ? 'default' : 'pointer',
           }}
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -46,8 +55,6 @@ export default function EnvelopeIntro({
           <video
             ref={videoRef}
             onEnded={handleVideoEnd}
-            autoPlay
-            muted
             playsInline
             preload="auto"
             style={{
