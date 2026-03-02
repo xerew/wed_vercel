@@ -168,7 +168,7 @@ export default function RSVP() {
                   marginBottom: '44px',
                 }}
               >
-                Παρακαλούμε απαντήστε έως 15 Αυγούστου 2026
+                Παρακαλούμε απαντήστε έως 15 Ιουλίου 2026
               </p>
 
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
