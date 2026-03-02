@@ -53,14 +53,14 @@ export default function Schedule({ onModalOpen, onModalClose }: ScheduleProps) {
 
       {/* Star Wars easter egg — bottom left */}
       <img
-        src="/starwars_section_2.png"
+        src="/deathstar_gif.gif"
         alt="This is the way"
         onClick={openModal}
         style={{
           position: 'absolute',
           bottom: 24,
           left: 32,
-          width: '72px',
+          width: '120px', //72
           height: 'auto',
           zIndex: 2,
           cursor: 'pointer',
@@ -231,7 +231,7 @@ export default function Schedule({ onModalOpen, onModalClose }: ScheduleProps) {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-8px); }
         }
-        #schedule > img[src*="starwars"] {
+        #schedule > img[src*="deathstar"] {
           opacity: 0.85;
           animation: deathstar-float 3.5s ease-in-out infinite;
         }
@@ -262,7 +262,7 @@ export default function Schedule({ onModalOpen, onModalClose }: ScheduleProps) {
             font-weight: 400 !important;
           }
           #schedule > img[src*="champagne"] { width: 160px !important; bottom: 0 !important; right: -10px !important; }
-          #schedule > img[src*="starwars"] { width: 52px !important; bottom: 16px !important; left: 16px !important; }
+          #schedule > img[src*="deathstar"] { width: 65px !important; bottom: 16px !important; left: 16px !important; }
           /* Modal: centered, scrollable if content is taller than viewport */
           #schedule-modal-overlay { overflow-y: auto !important; align-items: center !important; }
         }

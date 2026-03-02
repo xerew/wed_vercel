@@ -47,8 +47,10 @@ export default function MusicBar({ audioRef }: MusicBarProps) {
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(0.4);
   const [minimized, setMinimized] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
+    setIsTouchDevice(window.matchMedia('(pointer: coarse)').matches);
     if (audioRef.current) {
       setPlaying(!audioRef.current.paused);
       setVolume(audioRef.current.volume);
@@ -75,7 +77,7 @@ export default function MusicBar({ audioRef }: MusicBarProps) {
 
   return (
     <motion.div
-      drag
+      drag={isTouchDevice}
       dragMomentum={false}
       dragElastic={0}
       onClick={() => setMinimized((m) => !m)}
@@ -96,8 +98,8 @@ export default function MusicBar({ audioRef }: MusicBarProps) {
         gap: '10px',
         boxShadow: '0 2px 24px rgba(61, 31, 31, 0.13)',
         border: '1px solid rgba(201, 170, 170, 0.35)',
-        touchAction: 'none',
-        cursor: 'grab',
+        touchAction: isTouchDevice ? 'none' : 'auto',
+        cursor: isTouchDevice ? 'grab' : 'default',
         userSelect: 'none',
         overflow: 'hidden',
         whiteSpace: 'nowrap',
