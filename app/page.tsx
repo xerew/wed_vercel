@@ -19,7 +19,7 @@ export default function Home() {
         <EnvelopeIntro
           coupleName="Νάκης & Αιμιλία"
           onFinish={() => setOpened(true)}
-          videoSrc="/wedding_19_09_opening.mp4"
+          videoSrc="/wedding_19_09_opening_theone_fixed.mp4"
         />
       )}
 

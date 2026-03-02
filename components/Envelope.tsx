@@ -14,21 +14,13 @@ export default function EnvelopeIntro({
   onFinish,
   videoSrc = '/envelope-video.mp4',
 }: EnvelopeIntroProps) {
-  const [playing, setPlaying] = useState(false);
   const [done, setDone] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
-    videoRef.current?.load();
     return () => { document.body.style.overflow = ''; };
   }, []);
-
-  const handleClick = () => {
-    if (playing) return;
-    setPlaying(true);
-    videoRef.current?.play();
-  };
 
   const handleVideoEnd = () => {
     setDone(true);
@@ -40,14 +32,12 @@ export default function EnvelopeIntro({
       {!done && (
         <motion.div
           key="intro"
-          onClick={handleClick}
           style={{
             position: 'fixed',
             inset: 0,
             zIndex: 9999,
             background: '#000',
             overflow: 'hidden',
-            cursor: playing ? 'default' : 'pointer',
           }}
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -56,9 +46,10 @@ export default function EnvelopeIntro({
           <video
             ref={videoRef}
             onEnded={handleVideoEnd}
+            autoPlay
+            muted
             playsInline
             preload="auto"
-            poster="/opening_poster.jpg"
             style={{
               position: 'absolute',
               top: '50%',
@@ -66,7 +57,6 @@ export default function EnvelopeIntro({
               transform: 'translate(-50%, -50%) scale(1.15)',
               width: '100%',
               height: '100%',
-              //objectFit: 'cover',
               display: 'block',
             }}
           >
