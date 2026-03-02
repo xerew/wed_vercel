@@ -17,7 +17,7 @@ const items = [
 
 export default function About() {
   return (
-    <section id="about" style={{ background: '#fff', minHeight: '85vh', display: 'flex', alignItems: 'center', padding: '80px 24px' }}>
+    <section id="about" style={{ background: '#FCFCFC', minHeight: '85vh', display: 'flex', alignItems: 'center', padding: '80px 24px' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
         <h2
           style={{

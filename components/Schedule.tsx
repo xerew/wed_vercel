@@ -36,7 +36,7 @@ export default function Schedule({ onModalOpen, onModalClose }: ScheduleProps) {
   };
 
   return (
-    <section id="schedule" style={{ position: 'relative', background: '#fff', minHeight: '85vh', display: 'flex', alignItems: 'center', padding: '60px 40px', overflow: 'hidden' }}>
+    <section id="schedule" style={{ position: 'relative', background: '#FCFCFC', minHeight: '85vh', display: 'flex', alignItems: 'center', padding: '60px 40px', overflow: 'hidden' }}>
       <img
         src="/champagne_section_4.png"
         alt=""
@@ -262,7 +262,7 @@ export default function Schedule({ onModalOpen, onModalClose }: ScheduleProps) {
             font-weight: 400 !important;
           }
           #schedule > img[src*="champagne"] { width: 160px !important; bottom: 0 !important; right: -10px !important; }
-          #schedule > img[src*="deathstar"] { width: 65px !important; bottom: 16px !important; left: 16px !important; }
+          #schedule > img[src*="deathstar"] { width: 85px !important; bottom: 16px !important; left: 16px !important; }
           /* Modal: centered, scrollable if content is taller than viewport */
           #schedule-modal-overlay { overflow-y: auto !important; align-items: center !important; }
         }
