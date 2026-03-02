@@ -26,9 +26,7 @@ export default function Home() {
 
   // Called when user first taps the envelope screen
   const handleFirstTap = () => {
-    if (audioRef.current && audioRef.current.paused) {
-      audioRef.current.play().catch(() => {});
-    }
+    audioRef.current?.play().catch(() => {});
   };
 
   const handleModalOpen = () => {
@@ -50,7 +48,11 @@ export default function Home() {
       {!opened && (
         <EnvelopeIntro
           coupleName="Νάκης & Αιμιλία"
-          onFinish={() => setOpened(true)}
+          onFinish={() => {
+            setOpened(true);
+            // iOS releases the audio session when video ends — restart music here
+            audioRef.current?.play().catch(() => {});
+          }}
           videoSrc="/wedding_19_09_opening_theone_fixed.mp4"
           onFirstTap={handleFirstTap}
         />
