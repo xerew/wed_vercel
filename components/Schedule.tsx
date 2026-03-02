@@ -9,11 +9,17 @@ const events = [
   { time: '11:00 PM', title: 'Cocktails & Party' },
 ];
 
-export default function Schedule() {
+interface ScheduleProps {
+  onModalOpen?: () => void;
+  onModalClose?: () => void;
+}
+
+export default function Schedule({ onModalOpen, onModalClose }: ScheduleProps) {
   const [modalOpen, setModalOpen] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const openModal = () => {
+    onModalOpen?.();
     const audio = new Audio('/cantina_sw.mp3');
     audio.loop = true;
     audio.currentTime = 0.7;
@@ -26,6 +32,7 @@ export default function Schedule() {
     audioRef.current?.pause();
     audioRef.current = null;
     setModalOpen(false);
+    onModalClose?.();
   };
 
   return (

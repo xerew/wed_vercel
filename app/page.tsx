@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import EnvelopeIntro from '@/components/Envelope';
 import Hero from '@/components/Hero';
@@ -9,17 +9,50 @@ import Story from '@/components/Story';
 import Schedule from '@/components/Schedule';
 import Venue from '@/components/Venue';
 import RSVP from '@/components/RSVP';
+import MusicBar from '@/components/MusicBar';
 
 export default function Home() {
   const [opened, setOpened] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const musicWasPlayingRef = useRef(false);
+
+  // Try to autoplay on mount (works on desktop, silently fails on mobile)
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.4;
+      audioRef.current.play().catch(() => {});
+    }
+  }, []);
+
+  // Called when user first taps the envelope screen
+  const handleFirstTap = () => {
+    if (audioRef.current && audioRef.current.paused) {
+      audioRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleModalOpen = () => {
+    musicWasPlayingRef.current = !audioRef.current?.paused;
+    audioRef.current?.pause();
+  };
+
+  const handleModalClose = () => {
+    if (musicWasPlayingRef.current) {
+      audioRef.current?.play().catch(() => {});
+    }
+  };
 
   return (
     <>
+      {/* Background music — always in DOM so it persists */}
+      <audio ref={audioRef} src="/sw_theme_across_the_stars.mp3" loop preload="auto" />
+
       {!opened && (
         <EnvelopeIntro
           coupleName="Νάκης & Αιμιλία"
           onFinish={() => setOpened(true)}
           videoSrc="/wedding_19_09_opening_theone_fixed.mp4"
+          onFirstTap={handleFirstTap}
         />
       )}
 
@@ -29,7 +62,29 @@ export default function Home() {
         transition={{ duration: 0.7 }}
       >
         <Hero />
-        {[About, Story, Schedule, Venue, RSVP].map((Section, i) => (
+        {[About, Story].map((Section, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            viewport={{ once: true, margin: '-80px' }}
+          >
+            <Section />
+          </motion.div>
+        ))}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-80px' }}
+        >
+          <Schedule
+            onModalOpen={handleModalOpen}
+            onModalClose={handleModalClose}
+          />
+        </motion.div>
+        {[Venue, RSVP].map((Section, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 32 }}
@@ -52,6 +107,8 @@ export default function Home() {
           made with ♥ by the groom
         </footer>
       </motion.main>
+
+      {opened && <MusicBar audioRef={audioRef} />}
     </>
   );
 }

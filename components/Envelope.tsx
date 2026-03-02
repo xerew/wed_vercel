@@ -8,11 +8,13 @@ interface EnvelopeIntroProps {
   onFinish: () => void;
   imageSrc?: string;
   videoSrc?: string;
+  onFirstTap?: () => void;
 }
 
 export default function EnvelopeIntro({
   onFinish,
   videoSrc = '/envelope-video.mp4',
+  onFirstTap,
 }: EnvelopeIntroProps) {
   const [done, setDone] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -26,6 +28,7 @@ export default function EnvelopeIntro({
   const handleTap = () => {
     if (playing) return;
     setPlaying(true);
+    onFirstTap?.();
     videoRef.current?.play();
   };
 
@@ -57,6 +60,7 @@ export default function EnvelopeIntro({
             onEnded={handleVideoEnd}
             playsInline
             preload="auto"
+            poster="/opening_poster.jpg"
             style={{
               position: 'absolute',
               top: '50%',
