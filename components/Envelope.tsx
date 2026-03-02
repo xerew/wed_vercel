@@ -56,9 +56,9 @@ export default function EnvelopeIntro({
           <video
             ref={videoRef}
             onEnded={handleVideoEnd}
-            //muted
             playsInline
             preload="auto"
+            poster="/opening_poster.jpg"
             style={{
               position: 'absolute',
               top: '50%',
